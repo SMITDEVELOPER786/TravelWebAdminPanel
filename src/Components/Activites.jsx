@@ -71,7 +71,6 @@ function Activites() {
       });
   }
 
-
   // ----------------------- create Activites ---------------------
   const handleCreateActivity = () => {
     if (!categoryId || !title || !description || !imageUrls || !price || !priceDiscount || !rating || !totalReviews || !facilities || !address || !province || !city || !locationMaps) {
@@ -111,7 +110,7 @@ function Activites() {
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        toast.success("Promo created successfully", { position: "top-right" })
+        toast.success("Activity created successfully", { position: "top-right" })
 
         // Close the modal after successful submission
         fetchActivites()
@@ -138,18 +137,24 @@ function Activites() {
     if (!selectedPromoId) return;
 
     const data = JSON.stringify({
+      categoryId: categoryId,
       title: title,
-      description: desc,
-      terms_condition: termsCond,
-      imageUrl: PromoImg,
-      promo_code: promoCode,
-      promo_discount_price: discountPrice,
-      minimum_claim_price: claimPrice
+      description: description,
+      imageUrls: imageUrls,
+      price: price,
+      price_discount: priceDiscount,
+      rating: rating,
+      total_reviews: totalReviews,
+      facilities: facilities,
+      address: address,
+      province: province,
+      city: city,
+      location_maps: locationMaps
     });
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: `${baseUrl}/api/v1/update-promo/${selectedPromoId}`,
+      url: `${baseUrl}/api/v1/update-activity/${selectedPromoId}`,
       headers: {
         'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c',
         'Authorization': `Bearer ${token}`,
@@ -161,7 +166,7 @@ function Activites() {
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        toast.success("Promo Update successfully", { position: "top-right" })
+        toast.success("Activity Update successfully", { position: "top-right" })
         fetchActivites()
 
 
@@ -182,7 +187,7 @@ function Activites() {
     let config = {
       method: 'delete',
       maxBodyLength: Infinity,
-      url: `${baseUrl}/api/v1/delete-promo/${e}`,
+      url: `${baseUrl}/api/v1/delete-activity/${e}`,
       headers: {
         'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c',
         'Authorization': `Bearer ${token}`
@@ -192,7 +197,7 @@ function Activites() {
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        toast.success("Promo Deleted successfully", { position: "top-right" })
+        toast.success("Activity Deleted successfully", { position: "top-right" })
         fetchActivites()
 
       })
@@ -201,7 +206,6 @@ function Activites() {
       });
 
   }
-
   return (
     <>
       <Toaster />
@@ -258,7 +262,7 @@ function Activites() {
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 border">
                           <div className="text-sm text-gray-900">
-                            <img src={v.category.imageUrl} className="w-40 object-contain" alt="" />
+                            <img src={v.imageUrls} className="w-40 object-contain" alt="" />
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 flex justify-center items-center gap-5 text-sm text-gray-700 mt-8">

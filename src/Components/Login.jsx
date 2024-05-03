@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner';
 import img from "../assets/loginpic.44fccc2a0c0fdcaea0d3.jpg";
 
-export function Signin() {
+ function Signin() {
   const [email, setEmail] = useState('admin@gmail.com');
   const [password, setPassword] = useState('qwerty123');
   const [error, setError] = useState('');
 
-  const nav = useNavigate();
+  // const nav = useNavigate();
 
   const handleLogin = () => {
     // Custom validation for email and password
@@ -45,7 +45,7 @@ export function Signin() {
         localStorage.setItem('token', response.data.token);
         toast.success("Successfully Login" ,{position:'top-right'})
         setTimeout(() => {
-          nav("/dashbord/id", { replace: true }); 
+          // nav("/dashbord/id", { replace: true }); 
         }, 2000);
       })
       .catch((error) => {
@@ -71,7 +71,7 @@ export function Signin() {
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="email"
-                      placeholder="Email"
+                      placeholder="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -82,7 +82,7 @@ export function Signin() {
                     <label htmlFor="" className="text-base font-medium text-gray-900">
                       Password
                     </label>
-                    <a href="#" title="" className="text-sm font-semibold text-black hover:underline">
+                    <a href="https://example.com/forgot-password" title="" className="text-sm font-semibold text-black hover:underline">
                       Forgot password?
                     </a>
                   </div>
@@ -118,3 +118,5 @@ export function Signin() {
     </section>
   );
 }
+
+export default Signin

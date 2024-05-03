@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Signin } from './Components/Login'
+import  Signin  from './Components/Login'
 import Dashbord from './Components/Dashbord'
 import image from "./assets/onlyfor.png"
 function App() {
